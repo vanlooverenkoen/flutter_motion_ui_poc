@@ -1,0 +1,27 @@
+name: flutter_transitions
+description: Flutter Transitions
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.2.2 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/images/
+    - assets/fonts/
+
+  fonts:
+    - family: Grobold
+      fonts:
+        - asset: assets/fonts/grobold.ttf
