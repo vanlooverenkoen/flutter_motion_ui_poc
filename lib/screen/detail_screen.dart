@@ -5,6 +5,7 @@ import 'package:flutter_transitions/util/colors.dart';
 import 'package:flutter_transitions/util/hero.dart';
 import 'package:flutter_transitions/widget/detail_list_item.dart';
 import 'package:flutter_transitions/widget/header.dart';
+import 'package:preload_page_view/preload_page_view.dart';
 
 class DetailScreen extends StatefulWidget {
   final int currentPage;
@@ -17,17 +18,18 @@ class DetailScreen extends StatefulWidget {
 
 class _DetailScreenState extends State<DetailScreen> {
   final _carRepo = CarRepo();
-  PageController controller;
+  PreloadPageController controller;
   var _currentpage = 0;
+  var fadeIn = true;
 
   @override
   void initState() {
     super.initState();
     _currentpage = widget.currentPage;
-    controller = new PageController(
+    controller = PreloadPageController(
       initialPage: _currentpage,
       keepPage: true,
-      viewportFraction: 0.95,
+      viewportFraction: 0.9,
     );
   }
 
@@ -37,7 +39,10 @@ class _DetailScreenState extends State<DetailScreen> {
       backgroundColor: ThemeColors.backgroundColor,
       body: GestureDetector(
         onVerticalDragStart: (d) {
-          Navigator.of(context).pop(_currentpage);
+          setState(() {
+            fadeIn = false;
+            Navigator.of(context).pop(_currentpage);
+          });
         },
         child: Stack(
           children: [
@@ -73,13 +78,17 @@ class _DetailScreenState extends State<DetailScreen> {
                   ),
                   Expanded(
                     child: Container(
-                      child: PageView.builder(
+                      child: PreloadPageView.builder(
                         controller: controller,
+                        preloadPagesCount: 3,
                         scrollDirection: Axis.horizontal,
                         onPageChanged: (value) =>
                             setState(() => _currentpage = value),
                         itemBuilder: (context, index) => DetailListItem(
-                            index: index, car: _carRepo.getCars()[index]),
+                          index: index,
+                          car: _carRepo.getCars()[index],
+                          fadeIn: fadeIn,
+                        ),
                         itemCount: _carRepo.getCars().length,
                       ),
                     ),

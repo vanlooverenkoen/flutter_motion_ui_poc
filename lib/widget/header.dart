@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_transitions/util/colors.dart';
+import 'package:flutter_transitions/widget/fade_in.dart';
 
 class Header extends StatelessWidget {
   final bool showCloseButton;
@@ -30,18 +31,21 @@ class Header extends StatelessWidget {
                       right: 16,
                       top: 0,
                       bottom: 0,
-                      child: Center(
-                        child: GestureDetector(
-                          onTap: Navigator.of(context).pop,
-                          child: Container(
-                            padding: const EdgeInsets.all(8),
-                            decoration: BoxDecoration(
-                                color: Colors.black38,
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(100))),
-                            child: Icon(
-                              Icons.close,
-                              color: Colors.white,
+                      child: FadeIn(
+                        delay: 1,
+                        child: Center(
+                          child: GestureDetector(
+                            onTap: Navigator.of(context).pop,
+                            child: Container(
+                              padding: const EdgeInsets.all(8),
+                              decoration: BoxDecoration(
+                                  color: Colors.black38,
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(100))),
+                              child: Icon(
+                                Icons.close,
+                                color: Colors.white,
+                              ),
                             ),
                           ),
                         ),

@@ -1,5 +1,6 @@
 class Car {
   final String model;
+  final String quote;
   final String manufacturer;
   final String imageUrl;
   final String manufacturerLogoUrl;
@@ -8,6 +9,7 @@ class Car {
   Car(
     this.model,
     this.manufacturer,
+    this.quote,
     this.imageUrl,
     this.manufacturerLogoUrl,
     this.description,

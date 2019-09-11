@@ -57,7 +57,13 @@ class HomeListItem extends StatelessWidget {
                   ],
                 ),
                 Container(height: 8),
-                Text(car.model)
+                Hero(
+                  tag: ThemeHero.model(index.toString()),
+                  child: Material(
+                    type: MaterialType.transparency,
+                    child: Text(car.model),
+                  ),
+                )
               ],
             ),
           ],
